@@ -1,5 +1,4 @@
 # zentho-hotel-project
-# zentho-hotel-project
 The Zentho Hotel Website:
 
 Welcome to the official repository for The Zentho Hotel, a luxury hotel website project developed for our ICT course. This website showcases a fictional heritage luxury hotel located in Islamabad, Pakistan.
