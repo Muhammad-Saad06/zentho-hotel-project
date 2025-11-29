@@ -1,4 +1,12 @@
 # zentho-hotel-project
+
+Designed and Developed by:
+
+Muhammad Saad 25F-0511
+Muhammad Uzair Younas 25F-0615
+
+This project was created for an ICT Semester Project submission Fall 2025 FAST NUCES.
+
 The Zentho Hotel Website:
 
 Welcome to the official repository for The Zentho Hotel, a luxury hotel website project developed for our ICT course. This website showcases a fictional heritage luxury hotel located in Islamabad, Pakistan.
@@ -64,12 +72,4 @@ Open the folder in your file explorer.
 
 Double-click on home.html to open the website in your browser.
 
-Authors:
 
-Designed and Developed by:
-
-Saad
-
-Uzair
-
-This project was created for an ICT Semester Project submission Fall 2025 FAST NUCES.
