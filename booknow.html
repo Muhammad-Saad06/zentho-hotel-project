@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now - The Zentho Hotel</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+
+<body>
+
+    <header>
+    <div class="logo">
+        <img src="images/weblogo.png" alt="Zentho Logo" class="header-logo-img">
+        <h1>The Zentho Hotel</h1>
+    </div>
+
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="booknow.html" class="active">Book Now</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="booking-hero">
+        <h1>Start Your Journey</h1>
+        <p>Choose your room and dates to begin.</p>
+    </section>
+
+    <section class="booking-container">
+        <h2>Step 1: Stay Details</h2>
+        
+        <form id="bookingForm" onsubmit="return goToCheckout(event)">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="guests">Number of People</label>
+                    <input type="number" id="guests" min="1" max="10" value="1" onchange="calculateTotal()" required>
+                </div>
+                <div class="form-group">
+                    <label for="nights">Number of Nights</label>
+                    <input type="number" id="nights" min="1" max="30" value="1" onchange="calculateTotal()" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="roomType">Select Room Type</label>
+                <select id="roomType" onchange="calculateTotal()" required>
+                    <option value="10000">Standard Single Room (PKR 10,000)</option>
+                    <option value="15000">Luxury Twin Room (PKR 15,000)</option>
+                    <option value="20000">Deluxe Double Room (PKR 20,000)</option>
+                </select>
+            </div>
+
+            <div class="total-price-box">
+                Estimated Total: <span id="totalDisplay">PKR 10,000</span>
+            </div>
+
+            <button type="submit" class="btn-submit">Proceed to Checkout</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-left">
+      <img src="images/weblogo.png" alt="The Zentho Hotel Logo" class="footer-logo">
+      <p>contact@zenthohotel.com</p>
+      <p>(042) 111 333 000</p>
+      <p>24–Egerton Road, Islamabad 54000</p>
+    </div>
+
+    <div class="footer-center">
+      <h3>General</h3>
+      <ul>
+        <li><a href="rooms.html">Rooms</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+      </ul>
+      <a href="rooms.html" class="footer-btn">Rooms Booking</a>
+    </div>
+
+    <div class="footer-right">
+      <h3>Connect</h3>
+      <ul class="social-links">
+        <li><a href="https://facebook.com/ZenthonHotel" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        <li><a href="https://instagram.com/ZenthoHotel" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="https://youtube.com/ZenthoHotel" target="_blank" rel="noopener noreferrer">Youtube</a></li>
+      </ul>
+      <div class="weather-info">
+        <strong>Islamabad Weather</strong>
+        <div class="weather-icon-temp">
+          <img src="images/weather.png" alt="Weather Icon" class="weather-icon">
+          <span>9°C clear</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    The Zentho Hotel – All rights reserved – Website Designed & Developed by Saad and Uzair.
+  </div>
+</footer>
+
+    <script>
+        function calculateTotal()
+        {
+            var roomPrice = document.getElementById("roomType").value;
+            var nights = document.getElementById("nights").value;
+            var total = roomPrice * nights;
+            document.getElementById("totalDisplay").innerText = "PKR " + total.toLocaleString();            
+            return total; 
+        }
+
+        function goToCheckout(event)
+        {
+            event.preventDefault();
+
+            var roomSelect = document.getElementById("roomType");
+            var roomName = roomSelect.options[roomSelect.selectedIndex].text;
+            var total = calculateTotal();
+
+            localStorage.setItem("zentho_total", total);
+            localStorage.setItem("zentho_room", roomName);
+
+            window.location.href = "checkout.html";
+        }
+    </script>
+
+</body>
+</html>
