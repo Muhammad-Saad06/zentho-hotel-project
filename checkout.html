@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label>CNIC Number</label>
-                    <input type="text" placeholder="35202-xxxxxxx-x" required>
+                    <input type="text" id="cnic" placeholder="35202-xxxxxxx-x" oninput="enforceNumberAndHyphen(this)" required>
                 </div>
             </div>
 
@@ -68,17 +68,17 @@
             <h3 style="margin-top: 30px;">Payment Details</h3>
             <div class="form-group">
                 <label>Card Number</label>
-                <input type="text" placeholder="0000 0000 0000 0000" maxlength="16" required>
+                <input type="text" id="cardNum" placeholder="0000 0000 0000 0000" maxlength="19" oninput="enforceNumberAndSpace(this)" required>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label>Expiry Date</label>
-                    <input type="text" placeholder="MM/YY" maxlength="5" required>
+                    <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" oninput="enforceExpiry(this)" required>
                 </div>
                 <div class="form-group">
                     <label>CVV</label>
-                    <input type="password" placeholder="123" maxlength="3" required>
+                    <input type="password" id="cvv" placeholder="123" maxlength="3" oninput="enforceNumberOnly(this)" required>
                 </div>
             </div>
 
@@ -94,6 +94,7 @@
             <button type="submit" class="btn-submit" style="margin-top: 20px;">Confirm & Pay</button>
         </form>
     </section>
+
 <footer class="footer">
   <div class="footer-container">
 
@@ -136,6 +137,7 @@
     The Zentho Hotel – All rights reserved – Website Designed & Developed by Saad and Uzair.
   </div>
 </footer>
+
     <script>
         var currentTotal = 0;
 
@@ -152,6 +154,31 @@
             }
         };
 
+        
+        function enforceNumberOnly(input)
+        {
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+
+        function enforceNumberAndSpace(input)
+        {
+            input.value = input.value.replace(/[^0-9\s]/g, '');
+        }
+
+        function enforceNumberAndHyphen(input)
+        {
+            input.value = input.value.replace(/[^0-9-]/g, '');
+        }
+
+        function enforceExpiry(input)
+        {
+            input.value = input.value.replace(/[^0-9\/]/g, '');
+            
+            if(input.value.length === 2 && !input.value.includes('/')) {
+                input.value = input.value + '/';
+            }
+        }
+
         function applyCoupon()
         {
             var code = document.getElementById("couponCode").value.toUpperCase();
@@ -161,11 +188,11 @@
             {
                 var discount = currentTotal * 0.10;
                 var newTotal = currentTotal - discount;
-                
                 document.getElementById("summaryPrice").innerText = "PKR " + newTotal.toLocaleString();
                 message.innerText = "Success! 10% Discount Applied.";
                 message.style.color = "green";
-            } else
+            }
+            else
             {
                 message.innerText = "Invalid Code.";
                 message.style.color = "red";
